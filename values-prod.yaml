@@ -1,0 +1,45 @@
+replicaCount: 3
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: true
+  host: myapp.example.com
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+monitoring:
+  enabled: true
+
+postgresql:
+  enabled: true
+  auth:
+    username: appuser
+    password: prodpassword
+    database: appdb-prod
+  primary:
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 500m
+      limits:
+        memory: 1Gi
+        cpu: 1000m
+
+redis:
+  enabled: true
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 200m
+  limits:
+    memory: 512Mi
+    cpu: 500m

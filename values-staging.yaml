@@ -1,0 +1,36 @@
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: true
+  host: staging.myapp.example.com
+
+autoscaling:
+  enabled: false
+
+postgresql:
+  enabled: true
+  auth:
+    username: appuser
+    password: stagingpassword
+    database: appdb-staging
+  primary:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 250m
+
+redis:
+  enabled: true
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 200m

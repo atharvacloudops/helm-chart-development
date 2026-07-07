@@ -1,0 +1,73 @@
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+
+replicaCount: 2
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "1.25"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: nginx
+  host: myapp.example.com
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+monitoring:
+  enabled: false
+
+externalDatabase:
+  enabled: false
+
+postgresql:
+  enabled: true
+  auth:
+    username: appuser
+    password: apppassword
+    database: appdb
+  primary:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 250m
+      limits:
+        memory: 512Mi
+        cpu: 500m
+
+redis:
+  enabled: true
+  auth:
+    enabled: false
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 200m
+
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+serviceAccount:
+  create: false
+  name: ""
+
+httpRoute:
+  enabled: false

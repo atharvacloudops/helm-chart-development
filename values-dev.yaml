@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: Always
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+postgresql:
+  enabled: true
+  auth:
+    username: appuser
+    password: devpassword
+    database: appdb-dev
+  primary:
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 100m
+
+redis:
+  enabled: true
+
+resources:
+  requests:
+    memory: 64Mi
+    cpu: 50m
+  limits:
+    memory: 128Mi
+    cpu: 100m
