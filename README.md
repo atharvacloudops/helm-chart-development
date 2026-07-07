@@ -6,31 +6,43 @@ and CI pipeline with lint, template validation and chart packaging.
 
 ---
 
+## 📁 Project Structure
+
+```text
 helm-chart-development/
 ├── myapp/
 │   ├── Chart.yaml                    # Chart metadata and dependencies
-│   ├── values.yaml                   # Default values
+│   ├── values.yaml                   # Default configuration values
 │   ├── values.schema.json            # JSON schema validation
-│   └── templates/
-│       ├── deployment.yaml           # App deployment with rolling update
-│       ├── service.yaml              # Kubernetes service
-│       ├── hpa.yaml                  # Horizontal pod autoscaler
-│       ├── pdb.yaml                  # Pod disruption budget
-│       ├── networkpolicy.yaml        # Network policy
-│       ├── migration-job.yaml        # Pre-install DB migration hook
-│       ├── _helpers.tpl              # Reusable named templates
-│       └── tests/
-│           └── test-connection.yaml  # Helm connection test pod
-├── helmfile.yaml                     # Multi-environment declarative management
-├── values-dev.yaml                   # Development environment values
-├── values-staging.yaml               # Staging environment values
-├── values-prod.yaml                  # Production environment values
-├── dev-rendered.yaml                 # Rendered dev manifests
-├── staging-rendered.yaml             # Rendered staging manifests
-├── prod-rendered.yaml                # Rendered production manifests
-├── myapp-1.2.3.tgz                   # Packaged Helm chart
-└── .github/workflows/
-└── helm-ci.yml                   # Lint, template validation, package CI
+│   │
+│   ├── templates/
+│   │   ├── deployment.yaml           # Kubernetes Deployment
+│   │   ├── service.yaml              # Kubernetes Service
+│   │   ├── hpa.yaml                  # Horizontal Pod Autoscaler
+│   │   ├── pdb.yaml                  # Pod Disruption Budget
+│   │   ├── networkpolicy.yaml        # Network Policy
+│   │   ├── migration-job.yaml        # Pre-install database migration hook
+│   │   ├── _helpers.tpl              # Reusable template helpers
+│   │   └── tests/
+│   │       └── test-connection.yaml  # Helm connection test
+│   │
+│   ├── helmfile.yaml                 # Multi-environment deployment
+│   ├── values-dev.yaml               # Development environment values
+│   ├── values-staging.yaml           # Staging environment values
+│   ├── values-prod.yaml              # Production environment values
+│   │
+│   ├── dev-rendered.yaml             # Rendered development manifests
+│   ├── staging-rendered.yaml         # Rendered staging manifests
+│   ├── prod-rendered.yaml            # Rendered production manifests
+│   │
+│   └── myapp-1.2.3.tgz               # Packaged Helm chart
+│
+├── .github/
+│   └── workflows/
+│       └── helm-ci.yml               # CI pipeline for linting, validation & packaging
+│
+└── README.md                         # Project documentation
+```
 
 ---
 
