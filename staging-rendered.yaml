@@ -1170,3 +1170,4 @@ spec:
           env:
             - name: DATABASE_URL
               value: "postgresql://appuser:stagingpassword@myapp-staging-postgresql/appdb-staging"
+
